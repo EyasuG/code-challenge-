@@ -7,13 +7,13 @@ Write a function named greeting that takes in a string and returns the string in
 
 Then, write a function named speaker that takes in a string and a callback function. The speaker function should return the string in all uppercase letters only by invoking the callback.
 ------------------------------------------------------------------------------------------------ */
-
 const greeting = (word) => {
-  // Solution code here...
+
+  return word.toUpperCase()
 }
 
 const speaker = (message, callback) => {
-  // Solution code here...
+  return callback(message)
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -33,11 +33,13 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 const addValues = (arr, value) => {
-  // Solution code here...
+  arr.push(value)
 }
-
 const addNumbers = (num, arr, times, callback) => {
-  // Solution code here...
+  for( let i=0; i<times;i++){
+    callback(arr, num)
+  }
+  return arr 
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -53,11 +55,16 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 const removeOne = (num, arr) => {
-  // Solution code here...
+  arr.pop(num)
 }
-
 const removeElements = (arr, callback) => {
-  // Solution code here...
+  for(let i=0;i<arr.length;i++)
+  {
+    if((arr[i]%3)===2){
+      callback(arr[i],arr)
+    }
+  }
+  return arr
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,7 +74,12 @@ Write a function named removeWithForEach that produces the same output as challe
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithForEach = (arr, callback) => {
-  // Solution code here...
+  arr.forEach(function(num){
+    if((num%3)===2){
+      callback(num,arr)
+    }
+  })
+  return arr
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -81,7 +93,14 @@ This anonymous function should accept up to three arguments: the element, the in
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithAnon = (arr) => {
-  // Solution code here...
+  arr.forEach(function callback(currentValue,index,arr){
+    
+    if((currentValue%3)===2){
+      arr.pop(currentValue[index])
+    }
+  })
+  return arr
+
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -102,7 +121,13 @@ This function should use forEach to populate your grocery list based on the stor
 ------------------------------------------------------------------------------------------------ */
 
 const createList = (availableItems) => {
-  // Solution code here...
+  let finallist=[]
+  availableItems.forEach(function (element){
+    if(element.available===true){
+      finallist.push(element.name)
+    }
+  })
+  return finallist
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -120,7 +145,22 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 const fizzbuzz = (arr) => {
-  // Solution code here...
+  let array=[]
+  arr.forEach(function(num){
+    if((Number.isInteger(num/3)&&Number.isInteger(num/5))===true){
+      array.push('Fizz Buzz')
+    }
+    else if(Number.isInteger((num/3))===true){
+      array.push('Fizz')
+    }
+    else if(Number.isInteger((num/5))===true){
+      array.push('Buzz')
+    }
+    else{
+      array.push(num)
+    }
+  })
+  return array
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -140,14 +180,14 @@ describe('Testing challenge 1', () => {
   });
 });
 
-describe.only('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should add the number 8 to the array five times', () => {
     expect(addNumbers(8, [], 5, addValues)).toStrictEqual([8, 8, 8, 8, 8]);
     expect(addNumbers(8, [], 5, addValues).length).toStrictEqual(5);
   });
 });
 
-describe('Testing challenge 3', () => {
+describe.only('Testing challenge 3', () => {
   test('It should remove three elements from the array', () => {
     expect(removeElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne)).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
     expect(removeElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne).length).toStrictEqual(7);

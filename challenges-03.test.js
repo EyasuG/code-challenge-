@@ -2,55 +2,67 @@
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
-
 Write a function named sortBackwards that takes in an array of numbers and returns the same array, with the numbers sorted, highest to smallest.
 ------------------------------------------------------------------------------------------------ */
-
 const sortBackwards = (arr) => {
-  arr.sort()
+  // Solution code here...
+  /*function compare(a,b){
+    if (a < b) return 1;
+    if (b > a) return -1;
+    return 0;
+  }
+  return arr.sort(compare)*/
+  return arr.sort(s_ort);
+  function s_ort(a,b){
+    return (b-a)
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
-
 Write a function named alphabetize that takes in an array of strings and returns the same array with the strings sorted alphabetically.
-
 In this alphabetization, capital letters come before lower case letters.
-
 For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 ------------------------------------------------------------------------------------------------ */
 
 const alphabetize = (arr) => {
-  arr.sort([A-Z])
+  // Solution code here...
+  return arr.sort()
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
-
 Write a function named sortByLength that takes in an array of strings and returns the same array, with the strings sorted by their length, lowest to highest.
 ------------------------------------------------------------------------------------------------ */
 
 const sortByLength = (arr) => {
   // Solution code here...
+
+  return arr.sort(compare)
+  function compare(a,b){
+    return a.length-b.length
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
-
 Write a function named alphabetizeBetter that takes in an array of strings and returns the same array, with the strings sorted alphabetically. Capitalization should not change the sort order of two strings.
-
 For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, and so is ['alphabet', 'Alphabet', 'carrot', 'Zebra'].
 ------------------------------------------------------------------------------------------------ */
 
 const alphabetizeBetter = (arr) => {
   // Solution code here...
+  return arr.sort(compare2)
+  function compare2(a,b){
+    let a1=a.toUpperCase()
+    let b1=b.toUpperCase()
+    return a1>b1
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
-
 Write a function named sortByPrice that takes in an array of objects, each of which has a 'price' property, and sorts those objects by price, lowest to highest, returning the same array.
-
 Here is an example of the input:
 [
   {name: 'Sweatshirt', price: 45},
@@ -61,23 +73,30 @@ Here is an example of the input:
 
 const sortByPrice = (arr) => {
   // Solution code here...
+  return arr.sort(compare3);
+  function compare3(obj1,obj2){
+    return  obj1.price-obj2.price
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
-
 Write a function named sortNumbersByLength that takes in an array of numbers and sorts those numbers by their length.
-
 For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 ------------------------------------------------------------------------------------------------ */
 
 const sortNumbersByLength = (arr) => {
   // Solution code here...
+  return arr.sort(compare4)
+  function compare4(a,b){
+    let number1=a.toString().length
+    let number2=b.toString().length
+    return number1-number2
+  }
 };
 
 /*-----------------------------------------------------------------------------------------------
 CHALLENGE 7
-
 Write a function named sortPeople that takes in an array of Person objects, each of which has firstName, lastName, and age properties, and sorts those people by their last names. Do not worry about capitalization or first names.
 ------------------------------------------------------------------------------------------------ */
 
@@ -94,23 +113,33 @@ const people = [
 ];
 
 const sortPeople = (arr) => {
+  return arr.sort(compare5)
+  function compare5(person_a,person_b){
+    return person_a.lastName>person_b.lastName
+  }
   // Solution code here...
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8
-
 Write a function named sortPeopleBetter that takes in an array of Person objects, each of which has firstName, lastName, and age properties, and sorts those people by their last names.
-
 If two people share the same last name, alphabetize on their first name.
-
 If two people have the same full name, the younger one should come first. Do not worry about capitalization.
 ------------------------------------------------------------------------------------------------ */
-
 const sortPeopleBetter = (arr) => {
   // Solution code here...
+  return arr.sort(compare6)
+  function compare6(person_c,person_d){
+    if(person_c.firstName>person_d.firstName){
+      return 1
+    }
+    else if(person_c.firstName===person_d.firstName) {
+      if(person_c.age-person_d.age){
+        return 1
+      }
+    }
+  }
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
 
@@ -172,7 +201,7 @@ describe.only('Testing challenge 1', () => {
   });
 });
 
-describe('Testing challenge 2', () => {
+describe.only('Testing challenge 2', () => {
   test('It should sort strings alphabetically', () => {
     expect(alphabetize(['alphabet', 'Zebra', 'Alphabet', 'carrot'])).toStrictEqual([ 'Alphabet', 'Zebra', 'alphabet', 'carrot']);
     expect(alphabetize(['alphabet','Alphabet', 'carrot'])).toStrictEqual([ 'Alphabet', 'alphabet', 'carrot']);
@@ -180,7 +209,7 @@ describe('Testing challenge 2', () => {
   });
 });
 
-describe('Testing challenge 3', () => {
+describe.only('Testing challenge 3', () => {
   test('It should sort strings by length', () => {
     const ans = sortByLength(['alphabet', 'Zebra', 'Alphabet', 'carrot']);
     expect(ans.slice(0,2)).toStrictEqual(['Zebra', 'carrot']);
@@ -191,7 +220,7 @@ describe('Testing challenge 3', () => {
   });
 });
 
-describe('Testing challenge 4', () => {
+describe.only('Testing challenge 4', () => {
   test('It should alphabetize without regard to capitalization', () => {
     expect(alphabetizeBetter(['Alice', 'apple', 'alert', 'Average'])).toStrictEqual([ 'alert', 'Alice', 'apple', 'Average' ]);
     const ans = alphabetizeBetter(['alphabet', 'Zebra', 'Alphabet', 'carrot']);
@@ -200,7 +229,7 @@ describe('Testing challenge 4', () => {
   });
 });
 
-describe('Testing challenge 5', () => {
+describe.only('Testing challenge 5', () => {
   test('It should sort items by their price', () => {
     expect(sortByPrice([
       {name: 'Sweatshirt', price: 45},
@@ -216,7 +245,7 @@ describe('Testing challenge 5', () => {
   });
 });
 
-describe('Testing challenge 6', () => {
+describe.only('Testing challenge 6', () => {
   test('It should sort numbers by their length', () => {
     expect(sortNumbersByLength([10, 2.8, 1, -47.75])).toStrictEqual([1, 10, 2.8, -47.75]);
     expect(sortNumbersByLength([100, 2.82, 1, -47.75])).toStrictEqual([1, 100, 2.82, -47.75]);
@@ -224,7 +253,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-describe('Testing challenge 7', () => {
+describe.only('Testing challenge 7', () => {
   test('It should sort people by their last names', () => {
     expect(sortPeople(people)).toStrictEqual([
       new Person('Casey', 'Codefellow', 38),
@@ -236,7 +265,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-describe('Testing challenge 8', () => {
+describe.onl('Testing challenge 8', () => {
   test('It should sort people with more strict ordering', () => {
     const family = [
       new Person('Casey', 'Codefellows', 55),

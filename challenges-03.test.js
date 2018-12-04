@@ -52,8 +52,8 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 
 const alphabetizeBetter = (arr) => {
   // Solution code here...
-  return arr.sort(compare2)
-  function compare2(a,b){
+  return arr.sort(comparison)
+  function comparison(a,b){
     let a1=a.toUpperCase()
     let b1=b.toUpperCase()
     return a1>b1
@@ -73,8 +73,8 @@ Here is an example of the input:
 
 const sortByPrice = (arr) => {
   // Solution code here...
-  return arr.sort(compare3);
-  function compare3(obj1,obj2){
+  return arr.sort(comparison2);
+  function comparison2(obj1,obj2){
     return  obj1.price-obj2.price
   }
 };
@@ -113,9 +113,9 @@ const people = [
 ];
 
 const sortPeople = (arr) => {
-  return arr.sort(compare5)
-  function compare5(person_a,person_b){
-    return person_a.lastName>person_b.lastName
+  return arr.sort(comparison3)
+  function comparison3(a,b){
+    return a.lastName>b.lastName
   }
   // Solution code here...
 };
@@ -129,12 +129,12 @@ If two people have the same full name, the younger one should come first. Do not
 const sortPeopleBetter = (arr) => {
   // Solution code here...
   return arr.sort(compare6)
-  function compare6(person_c,person_d){
-    if(person_c.firstName>person_d.firstName){
+  function compare6(personOne,personTwo){
+    if(personOne.firstName>personTwo.firstName){
       return 1
     }
-    else if(person_c.firstName===person_d.firstName) {
-      if(person_c.age-person_d.age){
+    else if(personOne.firstName===personTwo.firstName) {
+      if(personOne.age-personTwo.age){
         return 1
       }
     }
@@ -265,7 +265,7 @@ describe.only('Testing challenge 7', () => {
   });
 });
 
-describe.onl('Testing challenge 8', () => {
+describe.only('Testing challenge 8', () => {
   test('It should sort people with more strict ordering', () => {
     const family = [
       new Person('Casey', 'Codefellows', 55),

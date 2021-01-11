@@ -58,7 +58,23 @@ Do not use the vertical bar (pipe) in your pattern.
 ------------------------------------------------------------------------------------------------ */
 
 const matchMonth = (input) => {
-  // Solution code here...
+  let regerx= /[(october)(oct)(October)(Oct)\w*]/g
+  let str=[]
+  for(let i=0;i,str.lenth; i++){
+  if((str==='oct') || (str==='Oct') ||(str==='October')||(str==='october')){
+    return 1
+  }
+else {
+  return 0
+}
+
+
+
+  
+
+  
+
+
 };
 
 /* ------------------------------------------------------------------------------------------------

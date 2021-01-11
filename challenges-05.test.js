@@ -17,6 +17,7 @@ const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
   return result;
+  let regex= 
 };
 
 /* ------------------------------------------------------------------------------------------------

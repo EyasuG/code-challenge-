@@ -69,6 +69,7 @@ let characters = [
 ]
 
 const totalCharacters = (arr) => {
+  return Object.values(characters).foreach(arr)
   // Solution code here...
 }
 
@@ -99,7 +100,18 @@ hasChildrenValues(characters, 'Eddard') will return false
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
 }
-
+//func has children(obj,chr)=>{
+ // Object.values(arr) returs the value of the object (Every Value of every key)
+ //We use the ForEach
+ //Object.value(obj).forEach(val =>{
+//if (val.children)===chr{
+  //if(val.children.length>0)
+  //children=true
+//}
+//else children= false
+//return children 
+ //})
+}
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
@@ -169,7 +181,7 @@ describe.only('Testing challenge 1', () => {
   });
 });
 
-describe('Testing challenge 2', () => {
+describe.only('Testing challenge 2', () => {
   test('something specific', () => {
     expect(totalCharacters(characters)).toStrictEqual(7);
   });
